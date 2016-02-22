@@ -23,13 +23,22 @@
     return [[self alloc]initWithDict:dict];
 }
 
+//+ (NSArray *)questions{
+//    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"questions.plist" ofType:nil]];
+//    NSMutableArray *arrayM = [NSMutableArray array];
+//    for (NSDictionary *dict in array) {
+//        [arrayM addObject:[self questionWithDict:dict]];
+//    }
+//    return arrayM;
+//}
+
 + (NSArray *)questions{
     NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"questions.plist" ofType:nil]];
-    NSMutableArray *arrayM = [NSMutableArray array];
+    NSMutableArray *arrM = [NSMutableArray array];
     for (NSDictionary *dict in array) {
-        [arrayM addObject:[self questionWithDict:dict]];
+        [arrM addObject:[self questionWithDict:dict]];
     }
-    return arrayM;
+    return arrM;
 }
 
 - (NSString *)description{

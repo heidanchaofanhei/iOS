@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
-            timestampString = "477646532.83924"
+            timestampString = "477806773.595071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-bigImage"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,28 +41,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/HMQuestion.m"
-            timestampString = "474294103.789883"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "+questions"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
-            timestampString = "477646532.83924"
+            timestampString = "477806773.595071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-bigImage"
             landmarkType = "5">
          </BreakpointContent>
@@ -84,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
-            timestampString = "477646532.83924"
+            timestampString = "477806773.595071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-nextQuestion"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
-            timestampString = "477646532.83924"
+            timestampString = "477806773.595071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-nextQuestion"
             landmarkType = "5">
          </BreakpointContent>

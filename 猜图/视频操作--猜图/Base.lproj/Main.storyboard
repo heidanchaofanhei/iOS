@@ -89,13 +89,25 @@
                                     <action selector="nextQuestion" destination="BYZ-38-t0r" eventType="touchUpInside" id="MqC-5u-Fg7"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="JWR-fo-5Vd">
+                                <rect key="frame" x="0.0" y="279" width="320" height="35"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="tb6-MG-5La">
+                                <rect key="frame" x="0.0" y="326" width="320" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="answerView" destination="JWR-fo-5Vd" id="XzJ-G6-tfs"/>
                         <outlet property="iconButton" destination="Ljv-Kw-nKP" id="FXi-hD-f7K"/>
                         <outlet property="nextQuestionButton" destination="O8p-WW-H9G" id="GvC-Pw-lb8"/>
                         <outlet property="noLabel" destination="09G-td-NMU" id="Xz2-is-a9p"/>
+                        <outlet property="optionsView" destination="tb6-MG-5La" id="zkS-KB-GlQ"/>
                         <outlet property="titleLabel" destination="VdH-Ah-5IT" id="bPb-IG-lFe"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *noLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *nextQuestionButton;
+@property (weak, nonatomic) IBOutlet UIView *answerView;
+@property (weak, nonatomic) IBOutlet UIView *optionsView;
 
 @end
 
@@ -110,6 +112,27 @@
     self.index++;
 
     //4.设置答案按钮
+#define kButtonWidth 35
+#define kButtonHeight 35
+#define kButtonMargin 10
+    
+    
+    
+    //创建所有答案的按钮
+    CGFloat answerW = self.answerView.bounds.size.width;
+    int lenth = question.answer.length;
+    CGFloat answerX = (answerW - kButtonWidth * lenth - kButtonMargin * (lenth - 1))*0.5;
+    
+    for (int i = 0; i<lenth; i++) {
+        CGFloat x = answerX + (kButtonMargin + kButtonWidth) * i;
+        
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, kButtonWidth, kButtonHeight)];
+        btn.backgroundColor = [UIColor whiteColor];
+        
+        [self.answerView addSubview:btn];
+    }
+    
+    
     
 }
 
