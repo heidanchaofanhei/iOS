@@ -116,7 +116,10 @@
 #define kButtonHeight 35
 #define kButtonMargin 10
     
-    
+    //由于答案区出现按钮叠加，所以要先清楚  然后新建
+    for (UIButton *btn in self.answerView.subviews) {
+        [btn removeFromSuperview];
+    }
     
     //创建所有答案的按钮
     CGFloat answerW = self.answerView.bounds.size.width;
