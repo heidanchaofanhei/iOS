@@ -136,12 +136,15 @@
         
         [self.answerView addSubview:btn];
     }
-    
+    //清除上一题的子视图
+    for (UIView *btn in self.optionsView.subviews) {
+        [btn removeFromSuperview];
+    }
     //5.备选区答案
     CGFloat optionsW = self.optionsView.bounds.size.width;
     CGFloat optionsX = (optionsW - kTotolCol * kButtonWidth - (kTotolCol - 1) * kButtonMargin) * 0.5;
     
-    for (int i = 0; i <21; i++) {
+    for (int i = 0; i < question.options.count; i++) {
         CGFloat row = i / kTotolCol;
         CGFloat col = i % kTotolCol;
         CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
@@ -152,6 +155,8 @@
         [self.optionsView addSubview:btn];
     }
     
+    //打印一下options中的子视图的数量
+    NSLog(@"%d",self.optionsView.subviews.count);
     
 }
 
