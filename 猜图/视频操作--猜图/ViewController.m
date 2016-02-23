@@ -115,8 +115,10 @@
 #define kButtonWidth 35
 #define kButtonHeight 35
 #define kButtonMargin 10
+#define kTotolCol 7
     
     //由于答案区出现按钮叠加，所以要先清楚  然后新建
+    //这个UIButton替换成UIView也可以，所有控件都继承自UIView，多态作用
     for (UIButton *btn in self.answerView.subviews) {
         [btn removeFromSuperview];
     }
@@ -135,6 +137,20 @@
         [self.answerView addSubview:btn];
     }
     
+    //5.备选区答案
+    CGFloat optionsW = self.optionsView.bounds.size.width;
+    CGFloat optionsX = (optionsW - kTotolCol * kButtonWidth - (kTotolCol - 1) * kButtonMargin) * 0.5;
+    
+    for (int i = 0; i <21; i++) {
+        CGFloat row = i / kTotolCol;
+        CGFloat col = i % kTotolCol;
+        CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
+        CGFloat y = row * (kButtonHeight + kButtonMargin);
+        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, kButtonWidth, kButtonHeight)];
+        btn.backgroundColor = [UIColor whiteColor];
+        
+        [self.optionsView addSubview:btn];
+    }
     
     
 }
