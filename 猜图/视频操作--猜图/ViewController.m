@@ -8,6 +8,12 @@
 
 #import "ViewController.h"
 #import "HMQuestion.h"
+
+#define kButtonWidth 35
+#define kButtonHeight 35
+#define kButtonMargin 10
+#define kTotolCol 7
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *iconButton;
 @property (nonatomic,strong) UIButton *cover;
@@ -63,6 +69,8 @@
     
 }
 
+#pragma mark - 大小图切换
+
 - (IBAction)bigImage {
     
     if (self.cover.alpha == 0) {
@@ -112,10 +120,7 @@
     self.index++;
 
     //4.设置答案按钮
-#define kButtonWidth 35
-#define kButtonHeight 35
-#define kButtonMargin 10
-#define kTotolCol 7
+
     
     //由于答案区出现按钮叠加，所以要先清楚  然后新建
     //这个UIButton替换成UIView也可以，所有控件都继承自UIView，多态作用
@@ -132,7 +137,7 @@
         CGFloat x = answerX + (kButtonMargin + kButtonWidth) * i;
         
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, kButtonWidth, kButtonHeight)];
-        btn.backgroundColor = [UIColor whiteColor];
+//        btn.backgroundColor = [UIColor whiteColor];
         
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer_highlighted"] forState:UIControlStateHighlighted];
@@ -163,6 +168,7 @@
         
         [self.optionsView addSubview:btn];
     }
+    
     
     //打印一下options中的子视图的数量
     NSLog(@"%d",self.optionsView.subviews.count);
