@@ -157,6 +157,10 @@
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_option"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_option_highlighted"] forState:UIControlStateHighlighted];
         
+        //设置备选答案
+        [btn setTitle:question.options[i] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
         [self.optionsView addSubview:btn];
     }
     
