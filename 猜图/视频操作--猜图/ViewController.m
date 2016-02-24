@@ -134,6 +134,9 @@
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, kButtonWidth, kButtonHeight)];
         btn.backgroundColor = [UIColor whiteColor];
         
+        [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer_highlighted"] forState:UIControlStateHighlighted];
+        
         [self.answerView addSubview:btn];
     }
     //清除上一题的子视图
@@ -150,7 +153,9 @@
         CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
         CGFloat y = row * (kButtonHeight + kButtonMargin);
         UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, kButtonWidth, kButtonHeight)];
-        btn.backgroundColor = [UIColor whiteColor];
+
+        [btn setBackgroundImage:[UIImage imageNamed:@"btn_option"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"btn_option_highlighted"] forState:UIControlStateHighlighted];
         
         [self.optionsView addSubview:btn];
     }
