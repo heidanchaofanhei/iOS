@@ -109,26 +109,47 @@
 
 - (IBAction)nextQuestion{
 //    self.index++;
+    
+    //2.从数组中按照索引取出题目模型数据
     HMQuestion *question = self.questions[self.index];
     
+    //1.当前答题索引，所以递增
+    self.index++;
+
+    
     //3.设置基本信息
+    [self setupBasicInfo:question];
+    //4.创建答案的按钮
+    [self createAnswerButton:question];
+    //5.备选区答案
+    [self createOptionButton:question];
+
+    
+    //打印一下options中的子视图的数量
+    NSLog(@"%d",self.optionsView.subviews.count);
+    
+}
+
+//设置基本信息
+- (void)setupBasicInfo:(HMQuestion *)question
+{
     self.noLabel.text = [NSString stringWithFormat:@"%d/%d",self.index+1,self.questions.count];
     self.titleLabel.text = question.title;
     [self.iconButton setImage:[UIImage imageNamed:question.icon] forState:UIControlStateNormal];
     //如果到达最后一题，禁用下一按钮
     self.nextQuestionButton.enabled = (self.index < self.questions.count - 1);
-    self.index++;
 
-    //4.设置答案按钮
+}
 
-    
+//创建答案区按钮
+- (void)createAnswerButton:(HMQuestion *)question
+{
     //由于答案区出现按钮叠加，所以要先清楚  然后新建
     //这个UIButton替换成UIView也可以，所有控件都继承自UIView，多态作用
     for (UIButton *btn in self.answerView.subviews) {
         [btn removeFromSuperview];
     }
     
-    //创建所有答案的按钮
     CGFloat answerW = self.answerView.bounds.size.width;
     int lenth = question.answer.length;
     CGFloat answerX = (answerW - kButtonWidth * lenth - kButtonMargin * (lenth - 1))*0.5;
@@ -137,18 +158,23 @@
         CGFloat x = answerX + (kButtonMargin + kButtonWidth) * i;
         
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, kButtonWidth, kButtonHeight)];
-//        btn.backgroundColor = [UIColor whiteColor];
+        //        btn.backgroundColor = [UIColor whiteColor];
         
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer_highlighted"] forState:UIControlStateHighlighted];
         
         [self.answerView addSubview:btn];
     }
+
+}
+
+/** 创建备选区按钮 */
+- (void)createOptionButton:(HMQuestion *)question
+{
     //清除上一题的子视图
     for (UIView *btn in self.optionsView.subviews) {
         [btn removeFromSuperview];
     }
-    //5.备选区答案
     CGFloat optionsW = self.optionsView.bounds.size.width;
     CGFloat optionsX = (optionsW - kTotolCol * kButtonWidth - (kTotolCol - 1) * kButtonMargin) * 0.5;
     
@@ -158,7 +184,7 @@
         CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
         CGFloat y = row * (kButtonHeight + kButtonMargin);
         UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, kButtonWidth, kButtonHeight)];
-
+        
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_option"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_option_highlighted"] forState:UIControlStateHighlighted];
         
@@ -168,11 +194,7 @@
         
         [self.optionsView addSubview:btn];
     }
-    
-    
-    //打印一下options中的子视图的数量
-    NSLog(@"%d",self.optionsView.subviews.count);
-    
+
 }
 
 @end
