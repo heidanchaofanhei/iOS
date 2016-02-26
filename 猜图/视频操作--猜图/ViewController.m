@@ -171,30 +171,43 @@
 /** 创建备选区按钮 */
 - (void)createOptionButton:(HMQuestion *)question
 {
-    //清除上一题的子视图
-    for (UIView *btn in self.optionsView.subviews) {
-        [btn removeFromSuperview];
-    }
-    CGFloat optionsW = self.optionsView.bounds.size.width;
-    CGFloat optionsX = (optionsW - kTotolCol * kButtonWidth - (kTotolCol - 1) * kButtonMargin) * 0.5;
+    //问题：每一次调用下一题方法时，都会创建21个按钮
+    //解决：如果按钮已经存在，并且是21个，只需要更改标题即可
+    if (self.optionsView.subviews.count != question.options.count) {
+        //清除上一题的子视图
+        for (UIView *btn in self.optionsView.subviews) {
+            [btn removeFromSuperview];
+        }
+        CGFloat optionsW = self.optionsView.bounds.size.width;
+        CGFloat optionsX = (optionsW - kTotolCol * kButtonWidth - (kTotolCol - 1) * kButtonMargin) * 0.5;
+        
+        for (int i = 0; i < question.options.count; i++) {
+            CGFloat row = i / kTotolCol;
+            CGFloat col = i % kTotolCol;
+            CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
+            CGFloat y = row * (kButtonHeight + kButtonMargin);
+            UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, kButtonWidth, kButtonHeight)];
+            
+            [btn setBackgroundImage:[UIImage imageNamed:@"btn_option"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"btn_option_highlighted"] forState:UIControlStateHighlighted];
+            
+            //设置备选答案
+            [btn setTitle:question.options[i] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            
+            [self.optionsView addSubview:btn];
+        }
+                }
     
-    for (int i = 0; i < question.options.count; i++) {
-        CGFloat row = i / kTotolCol;
-        CGFloat col = i % kTotolCol;
-        CGFloat x = optionsX + col * (kButtonMargin + kButtonWidth);
-        CGFloat y = row * (kButtonHeight + kButtonMargin);
-        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, kButtonWidth, kButtonHeight)];
+    //如果按钮已经存在，点击下一题时，只需要设置标题即可
+    int i = 0;
+    for (UIButton *btn in self.optionsView.subviews) {
+        [btn setTitle:question.options[i++] forState:UIControlStateNormal];
         
-        [btn setBackgroundImage:[UIImage imageNamed:@"btn_option"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"btn_option_highlighted"] forState:UIControlStateHighlighted];
-        
-        //设置备选答案
-        [btn setTitle:question.options[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
-        [self.optionsView addSubview:btn];
     }
-
 }
+
+    
+
 
 @end
