@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
-            timestampString = "478004808.866361"
+            timestampString = "478358476.644053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-nextQuestion"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,6 +122,38 @@
             startingLineNumber = "105"
             endingLineNumber = "105"
             landmarkName = "-bigImage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
+            timestampString = "478419360.810663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "-firstAnswerButton"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x89c6;&#x9891;&#x64cd;&#x4f5c;--&#x731c;&#x56fe;/ViewController.m"
+            timestampString = "478419360.810663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "-firstAnswerButton"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

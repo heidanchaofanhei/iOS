@@ -107,27 +107,22 @@
 
 //button的alpha属性设置为0，意味着hidden = YES
 
+#pragma mark - 下一题按钮
+
 - (IBAction)nextQuestion{
-//    self.index++;
-    
+    //    self.index++;
     //2.从数组中按照索引取出题目模型数据
     HMQuestion *question = self.questions[self.index];
-    
     //1.当前答题索引，所以递增
     self.index++;
-
-    
     //3.设置基本信息
     [self setupBasicInfo:question];
     //4.创建答案的按钮
     [self createAnswerButton:question];
     //5.备选区答案
     [self createOptionButton:question];
-
-    
     //打印一下options中的子视图的数量
     NSLog(@"%d",self.optionsView.subviews.count);
-    
 }
 
 //设置基本信息
@@ -163,6 +158,7 @@
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"btn_answer_highlighted"] forState:UIControlStateHighlighted];
         
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.answerView addSubview:btn];
     }
 
@@ -196,10 +192,13 @@
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
             [self.optionsView addSubview:btn];
+            
+            //给按钮添加监听
+            [btn addTarget:self action:@selector(optionClick:) forControlEvents:UIControlEventTouchUpInside];
         }
                 }
     
-    //如果按钮已经存在，点击下一题时，只需要设置标题即可
+    //如果按钮已经存在，不需要新建按钮，只需要设置标题即可
     int i = 0;
     for (UIButton *btn in self.optionsView.subviews) {
         [btn setTitle:question.options[i++] forState:UIControlStateNormal];
@@ -207,7 +206,32 @@
     }
 }
 
-    
+#pragma mark - 候选按钮点击方法
 
+- (void)optionClick:(UIButton *)button
+{
+    NSLog(@"%s",__func__);
+    //在答案区找到第一个titile为空的按钮
+    UIButton *btn = [self firstAnswerButton];
+    
+    //将buttn的标题设置给答案区的按钮
+    [btn setTitle:button.currentTitle forState:UIControlStateNormal];
+    
+    //按钮隐藏
+    button.hidden = YES;
+}
+    
+//在答案区找到第一个文字为空的按钮
+- (UIButton *)firstAnswerButton
+{
+    //取按钮的标题
+    //遍历所有答案区按钮
+    for (UIButton * btn in self.answerView.subviews) {
+        if (btn.currentTitle.length == 0) {
+            return btn;
+        }
+    }
+    return nil;
+}
 
 @end
