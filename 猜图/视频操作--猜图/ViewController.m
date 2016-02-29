@@ -113,8 +113,6 @@
     //    self.index++;
     //2.从数组中按照索引取出题目模型数据
     HMQuestion *question = self.questions[self.index];
-    //1.当前答题索引，所以递增
-    self.index++;
     //3.设置基本信息
     [self setupBasicInfo:question];
     //4.创建答案的按钮
@@ -123,6 +121,11 @@
     [self createOptionButton:question];
     //打印一下options中的子视图的数量
     NSLog(@"%d",self.optionsView.subviews.count);
+    
+    //1.当前答题索引，所以递增
+
+    self.index++;
+
 }
 
 //设置基本信息
@@ -211,16 +214,63 @@
 - (void)optionClick:(UIButton *)button
 {
     NSLog(@"%s",__func__);
-    //在答案区找到第一个titile为空的按钮
+    //1.在答案区找到第一个titile为空的按钮
     UIButton *btn = [self firstAnswerButton];
     
-    //将buttn的标题设置给答案区的按钮
+    //如果没找到为空按钮，直接返回
+    if (btn == nil) {
+        return;
+    }
+    
+    //2.将buttn的标题设置给答案区的按钮
     [btn setTitle:button.currentTitle forState:UIControlStateNormal];
     
-    //按钮隐藏
+    //3.按钮隐藏
     button.hidden = YES;
-}
     
+    //4.判定
+    [self judge];
+}
+
+//判定答案
+- (void)judge
+{
+    NSMutableString *strM = [NSMutableString string];
+    
+    //四个按钮都有文字才能判定结果
+    //遍历所有答案区按钮
+    BOOL isFull = YES;
+    for (UIButton * btn in self.answerView.subviews) {
+        if (btn.currentTitle.length ==0) {
+            isFull = NO;
+            break;
+        }else{
+            [strM appendString:btn.currentTitle];
+
+        }
+    }
+    
+    if (isFull) {
+        NSLog(@"都有字----%@",strM);
+        //判断答案是否一致
+        //根据self.index获得当前question
+        HMQuestion * question = self.questions[self.index-1];
+        
+        //如果一致，进入下一题
+        if ([strM isEqualToString:question.answer]) {
+            NSLog(@"yes");
+            
+            //如果不一致，提示用户修改
+        }else{
+            NSLog(@"no");
+        }
+    }else{
+        
+        NSLog(@"继续");
+    }
+}
+
+
 //在答案区找到第一个文字为空的按钮
 - (UIButton *)firstAnswerButton
 {
