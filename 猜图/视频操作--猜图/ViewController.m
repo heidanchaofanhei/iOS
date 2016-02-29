@@ -259,10 +259,11 @@
         //如果一致，进入下一题
         if ([strM isEqualToString:question.answer]) {
             NSLog(@"yes");
-            
+            [self setAnswerButtonColor:[UIColor blueColor]];
             //如果不一致，提示用户修改
         }else{
             NSLog(@"no");
+            [self setAnswerButtonColor:[UIColor redColor]];
         }
     }else{
         
@@ -270,6 +271,13 @@
     }
 }
 
+//修改答题区按钮颜色
+- (void)setAnswerButtonColor:(UIColor *)color
+{
+    for (UIButton *btn in self.answerView.subviews) {
+        [btn setTitleColor:color forState:UIControlStateNormal];
+    }
+}
 
 //在答案区找到第一个文字为空的按钮
 - (UIButton *)firstAnswerButton
