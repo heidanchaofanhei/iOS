@@ -206,6 +206,9 @@
     for (UIButton *btn in self.optionsView.subviews) {
         [btn setTitle:question.options[i++] forState:UIControlStateNormal];
         
+        //按钮被显示
+        btn.hidden = NO;
+        
     }
 }
 
@@ -260,14 +263,15 @@
         if ([strM isEqualToString:question.answer]) {
             NSLog(@"yes");
             [self setAnswerButtonColor:[UIColor blueColor]];
+            
+            //等待一秒中，进入下一题
+            [self performSelector:@selector(nextQuestion) withObject:nil afterDelay:1.0];
+            
             //如果不一致，提示用户修改
         }else{
             NSLog(@"no");
             [self setAnswerButtonColor:[UIColor redColor]];
         }
-    }else{
-        
-        NSLog(@"继续");
     }
 }
 
