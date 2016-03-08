@@ -22,4 +22,6 @@
 + (instancetype)questionWithDict:(NSDictionary *)dict;
 + (NSArray *)questions;
 
+//打乱备选文字数组
+- (void)randomOtions;
 @end

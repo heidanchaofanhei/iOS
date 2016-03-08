@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         [self setValuesForKeysWithDictionary:dict];
+        [self random];
     }
     return self;
 }
@@ -45,4 +46,27 @@
     return [NSString stringWithFormat:@"%@ :%p----<answer :%@,titile :%@,icon :%@,options :%@",self.class,self,self.answer,self.title,self.icon,self.options];
 }
 
+-(void)randomOtions
+{
+    self.options = [self.options sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        int random = arc4random_uniform(2);
+        if (random) {
+            return [str1 compare:str2];
+        }else{
+            return [str2 compare:str1];
+        }
+    }];
+    NSLog(@"%@",self.options);
+}
+- (void)random
+{
+    self.options = [self.options sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        int seed = arc4random_uniform(2);
+        if (seed) {
+            return [str1 compare:str2];
+        }else{
+            return [str2 compare:str1];
+        }
+    }];
+}
 @end

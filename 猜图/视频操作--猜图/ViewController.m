@@ -215,6 +215,7 @@
     
     //如果按钮已经存在，不需要新建按钮，只需要设置标题即可
     int i = 0;
+//    [question randomOtions];
     for (UIButton *btn in self.optionsView.subviews) {
         [btn setTitle:question.options[i++] forState:UIControlStateNormal];
         
@@ -255,6 +256,7 @@
     //四个按钮都有文字才能判定结果
     //遍历所有答案区按钮
     BOOL isFull = YES;
+    
     for (UIButton * btn in self.answerView.subviews) {
         if (btn.currentTitle.length ==0) {
             isFull = NO;
