@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextQuestionButton;
 @property (weak, nonatomic) IBOutlet UIView *answerView;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
+@property (weak, nonatomic) IBOutlet UIButton *scoreButton;
 
 @end
 
@@ -111,6 +112,13 @@
 
 - (IBAction)nextQuestion{
     //    self.index++;
+    
+    //如果index到达最后一题，提示用户奖励
+    if (self.index == self.questions.count) {
+        NSLog(@"%d",self.index);
+        return;
+    }
+    
     //2.从数组中按照索引取出题目模型数据
     HMQuestion *question = self.questions[self.index];
     //3.设置基本信息
@@ -122,6 +130,7 @@
     //打印一下options中的子视图的数量
     NSLog(@"%d",self.optionsView.subviews.count);
     
+
     //1.当前答题索引，所以递增
 
     self.index++;
@@ -163,6 +172,9 @@
         
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.answerView addSubview:btn];
+        
+        //添加监听
+        [btn addTarget:self action:@selector(answerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
 
 }
@@ -266,7 +278,7 @@
             
             //等待一秒中，进入下一题
             [self performSelector:@selector(nextQuestion) withObject:nil afterDelay:1.0];
-            
+            [self changeScore:800];
             //如果不一致，提示用户修改
         }else{
             NSLog(@"no");
@@ -295,5 +307,55 @@
     }
     return nil;
 }
+
+#pragma mark - 点击答案区按钮
+
+- (void)answerButtonClick:(UIButton *)button
+{
+    NSLog(@"%s",__func__);
+    if (button.currentTitle.length == 0)  return;
+    UIButton *btn = [self optionButtonWithTitle:button.currentTitle isHidden:YES];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    btn.hidden = NO;
+    [self setAnswerButtonColor:[UIColor blackColor]];
+}
+
+-(UIButton *)optionButtonWithTitle:(NSString *)title isHidden:(BOOL)isHidden
+{
+    //从答案区找到标题为title的按钮
+    for (UIButton *btn in self.optionsView.subviews) {
+        if ([btn.currentTitle isEqualToString:title] && btn.hidden == isHidden) {
+            return btn;
+        }
+    }
+    return nil;
+}
+
+- (IBAction)tipClick
+{
+    for (UIButton *btn in self.answerView.subviews) {
+        [self answerButtonClick:btn];
+    }
+    //找到答案中第一个字
+    HMQuestion *question = self.questions[self.index-1];
+    NSString *first = [question.answer substringToIndex:1];
+    NSLog(@"%@",first);
+
+    //将第一个字遍历答案区按钮title，模拟点击那个按钮
+    UIButton *btn = [self optionButtonWithTitle:first isHidden:NO];
+    [self optionClick:btn];
+    
+    [self changeScore:-1000];
+}
+
+#pragma mark - 修改分数
+- (void)changeScore:(int)value
+{
+    //intvalue是将字符串变成数字
+    int currentscore = self.scoreButton.currentTitle.intValue;
+    currentscore += value;
+    [self.scoreButton setTitle:[NSString stringWithFormat:@"%d",currentscore] forState:UIControlStateNormal];
+}
+
 
 @end

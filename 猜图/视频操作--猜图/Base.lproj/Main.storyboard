@@ -52,6 +52,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="提示" image="icon_tip" backgroundImage="btn_left"/>
                                 <state key="highlighted" image="icon_tip" backgroundImage="btn_left_highlighted"/>
+                                <connections>
+                                    <action selector="tipClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nlj-7p-Mjt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IwU-tv-tRv">
                                 <rect key="frame" x="0.0" y="172" width="71" height="36"/>
@@ -91,7 +94,7 @@
                             </button>
                             <view contentMode="scaleToFill" id="JWR-fo-5Vd">
                                 <rect key="frame" x="0.0" y="279" width="320" height="35"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" id="tb6-MG-5La">
                                 <rect key="frame" x="0.0" y="331" width="320" height="230"/>
@@ -106,6 +109,7 @@
                         <outlet property="nextQuestionButton" destination="O8p-WW-H9G" id="GvC-Pw-lb8"/>
                         <outlet property="noLabel" destination="09G-td-NMU" id="Xz2-is-a9p"/>
                         <outlet property="optionsView" destination="tb6-MG-5La" id="zkS-KB-GlQ"/>
+                        <outlet property="scoreButton" destination="ajG-KV-u1c" id="T9W-I5-nkk"/>
                         <outlet property="titleLabel" destination="VdH-Ah-5IT" id="bPb-IG-lFe"/>
                     </connections>
                 </viewController>
